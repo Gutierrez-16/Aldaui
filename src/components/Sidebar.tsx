@@ -31,18 +31,18 @@ const Sidebar = ({ isSidebarCollapsed, menuItems, children }: SidebarProps) => {
         isSidebarCollapsed ? "w-20" : "w-64"
       }`}
     >
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full dark:bg-black ">
         <div className="flex-1 py-4 overflow-y-auto scrollbar-hide">
           {menuItems.map((item, index) => (
             <div key={index} className="px-3 mb-2">
               <button
                 onClick={() => item.subItems && toggleExpand(item.title)}
-                className={`flex items-center w-full px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 ${
+                className={`flex items-center w-full px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-500 dark:text-white${
                   isActive(item.path) ? "bg-gray-200 text-blue-600" : ""
                 }`}
               >
                 <item.icon
-                  className={`w-5 h-5 min-w-[1.25rem] ${
+                  className={`w-5 h-5 min-w-[1.25rem]  ${
                     isSidebarCollapsed ? "mx-auto" : ""
                   }`}
                 />
@@ -69,9 +69,9 @@ const Sidebar = ({ isSidebarCollapsed, menuItems, children }: SidebarProps) => {
                   {item.subItems.map((subItem, subIndex) => (
                     <Link key={subIndex} to={subItem.path}>
                       <button
-                        className={`block w-full px-3 py-1 text-sm text-gray-600 rounded-lg hover:bg-gray-100 ${
+                        className={`block w-full px-3 py-1 text-sm text-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-500 dark:text-white${
                           isActive(subItem.path)
-                            ? "bg-gray-200 text-blue-600"
+                            ? "bg-gray-200 dark:bg-gray-500 text-blue-600 dark:text-white"
                             : ""
                         }`}
                       >

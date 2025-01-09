@@ -7,7 +7,7 @@ import { Template } from "../../components/landing/Template";
 
 export default function Home() {
     return (
-        <div className="flex min-h-screen flex-col bg-background dark:bg-background-dark">
+        <div className="flex min-h-screen flex-col bg-background dark:bg-background-dark scrollbar-hide">
             <SiteHeader />
             <main className="flex-1 mx-4 md:mx-6 lg:mx-30">
                 <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 flex justify-center items-center">
