@@ -75,7 +75,7 @@ export function SiteHeader({ onToggleSidebar }: SiteHeaderProps) {
       </div>
 
       <div className="flex items-center space-x-2">
-        {location.pathname.startsWith("/component") && (
+        {location.pathname.startsWith("/ui") && (
           <button
             onClick={onToggleSidebar}
             className="mr-2 rounded-md p-2  lg:hidden"

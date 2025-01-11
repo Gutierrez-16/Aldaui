@@ -1,6 +1,6 @@
-import { CopyButton } from "../../../components/landing/components/preview/copy-button";
+import { CopyButton } from "../../../../components/landing/components/preview/copy-button";
 
-export default function Content() {
+export default function TailwindInstall() {
   const codeExample1 = `npm create vite@latest my-project -- --template react
 cd my-project`;
 

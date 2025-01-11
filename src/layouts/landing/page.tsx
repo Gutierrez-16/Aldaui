@@ -25,7 +25,7 @@ export default function Home() {
                                 size="lg"
                                 className="w-auto flex items-center justify-center bg-primary hover:bg-primary-hover text-white"
                             >
-                                <a href="/component" className="flex items-center">
+                                <a href="/ui" className="flex items-center">
                                     Get Started
                                 </a>
                             </Button>

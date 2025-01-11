@@ -11,7 +11,9 @@ import { ThemeProvider } from "../lib/theme-provider";
 import Chart from "../layouts/chart/chart";
 import { Components } from "../layouts/landing/app/page";
 import Button from "../layouts/landing/preview";
-import InstallationPage from "../layouts/landing/app/InstallationPage";
+import AldauiInstallation from "../layouts/landing/app/get-start/AldauiInstallation";
+import TailwindInstall from "../layouts/landing/app/tailwind/TailwindInstall";
+import ConfigAldaui from "../layouts/landing/app/get-start/ConfigAldaui";
 
 function AppRoutes() {
   return (
@@ -28,9 +30,11 @@ function AppRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/chart" element={<Chart />} />
 
-          <Route path="/component" element={<Components />}>
+          <Route path="/ui" element={<Components />}>
             <Route path="buttons" element={<Button />} />
-            <Route path="install" element={<InstallationPage />} />
+            <Route index element={<AldauiInstallation />} />
+            <Route path="configuration" element={<ConfigAldaui />} />
+            <Route path="install-tailwind" element={<TailwindInstall />} />
           </Route>
         </Routes>
         <ToastContainer />

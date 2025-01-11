@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronDownIcon } from "./icons/icon";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface SidebarProps {
   className?: string;
@@ -24,6 +24,23 @@ export default function ManiSidebar({
 }: SidebarProps) {
   const [openSections, setOpenSections] = useState<string[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const location = useLocation();
+  
+  useEffect(() => {
+    const activeSections = navigation.reduce((acc, section) => {
+      if (section.items?.some((item) => location.pathname === item.path)) {
+        acc.push(section.name);
+      }
+      if (section.sections?.some((subsection) =>
+        subsection.items.some((item) => location.pathname === item.path)
+      )) {
+        acc.push(section.name);
+      }
+      return acc;
+    }, [] as string[]);
+    
+    setOpenSections(activeSections);
+  }, [location, navigation]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -40,18 +57,21 @@ export default function ManiSidebar({
     );
   };
 
+  const isActive = (path: string) => location.pathname === path;
+
   const SidebarContent = () => (
     <nav className="h-full overflow-y-auto scrollbar-hide">
       <div className="space-y-1 p-4">
         {navigation.map((section) => (
-          <div key={section.name} className="mb-4">
+          <div key={section.name} >
             <button
               onClick={() => toggleSection(section.name)}
-              className={`flex w-full items-center justify-between rounded-md px-2 py-1.5 text-sm ${
-                section.current
-                  ? "text-primary dark:text-primary"
-                  : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
-              }`}
+              className={`flex w-full items-center justify-between rounded-md px-2 py-2 text-sm 
+                ${
+                  section.current
+                    ? "text-primary dark:text-primary"
+                    : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                }`}
             >
               <div className="flex items-center gap-2">
                 {section.icon && <section.icon className="h-4 w-4" />}
@@ -77,7 +97,11 @@ export default function ManiSidebar({
                       <Link
                         key={index}
                         to={item.path}
-                        className="block rounded-md px-2 py-1.5 text-sm text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                        className={`block rounded-md px-2 py-1.5 text-sm ${
+                          isActive(item.path)
+                            ? "bg-primary text-white"
+                            : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                        }`}
                         onClick={() => isMobile && onClose()}
                       >
                         {item.name}
@@ -87,8 +111,8 @@ export default function ManiSidebar({
 
                 {section.sections?.length
                   ? section.sections.map((subsection) => (
-                      <div key={subsection.title} className="mb-2">
-                        <div className="px-2 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider dark:text-gray-400">
+                      <div key={subsection.title} className="mb-2 ">
+                        <div className="px-2 py-2 text-xs font-bold text-primary uppercase tracking-wider dark:text-primary">
                           {subsection.title}
                         </div>
                         <div className="space-y-1">
@@ -96,7 +120,11 @@ export default function ManiSidebar({
                             <Link
                               key={index}
                               to={item.path}
-                              className="block rounded-md px-2 py-1.5 text-sm text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                              className={`block rounded-md px-2 py-1.5 text-sm ${
+                                isActive(item.path)
+                                  ? "bg-primary text-white"
+                                  : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                              }`}
                               onClick={() => isMobile && onClose()}
                             >
                               {item.name}

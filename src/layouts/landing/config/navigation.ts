@@ -5,8 +5,8 @@ export const navigation = [
       name: "Getting Started",
       icon: HomeIcon,
       items: [
-        { name: "Installation", path: "/getting-started/installation" },
-        { name: "Configuration", path: "/getting-started/configuration" },
+        { name: "Installation", path: "/ui" },
+        { name: "Configuration", path: "/ui/configuration" },
         { name: "Playground", path: "/getting-started/playground" },
       ]
     },
@@ -41,7 +41,7 @@ export const navigation = [
         {
           title: "Button",
           items: [
-            { name: "Button", path: "/component/buttons" },
+            { name: "Button", path: "/ui/buttons" },
             { name: "SpeedDial", path: "/components/button/speeddial" },
             { name: "SplitButton", path: "/components/button/splitbutton" },
             { name: "ToggleButton", path: "/components/button/togglebutton" }
@@ -78,7 +78,7 @@ export const navigation = [
       name: "Tailwind",
       icon: WindIcon,
       items: [
-        { name: "Configuration", path: "/component/install" },
+        { name: "Configuration", path: "/ui/install-tailwind" },
       ],
     },
     {
